@@ -3,16 +3,20 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
+import static java.util.Arrays.*;
+
 public class WorldMap{
-    HashMap<String,ArrayList<String>> location = new HashMap<>();
+    HashMap<String,Location> locations = new HashMap<>();
     public boolean loadMap(){
         try (BufferedReader br = new BufferedReader(new FileReader("worldMap.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] lines = line.split("-");
-                location.put(lines[0],new ArrayList<>());
+                Location location = new Location(Arrays.copyOfRange(lines, 1, lines.length));
+                locations.put(lines[0],location);
 
             }
         } catch (FileNotFoundException e) {
