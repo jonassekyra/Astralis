@@ -2,11 +2,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import static java.util.Arrays.*;
 
 public class WorldMap{
     HashMap<String,Location> locations = new HashMap<>();
@@ -15,7 +13,7 @@ public class WorldMap{
             String line;
             while ((line = br.readLine()) != null) {
                 String[] lines = line.split("-");
-                Location location = new Location(Arrays.copyOfRange(lines, 1, lines.length));
+                Location location = new Location(lines[0],Arrays.copyOfRange(lines, 1, lines.length));
                 locations.put(lines[0],location);
 
             }
