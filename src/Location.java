@@ -9,6 +9,8 @@ public class Location {
         this.posibleLocations = posibleLocations;
     }
 
+    public Location() {
+    }
 
     @Override
     public String toString() {
