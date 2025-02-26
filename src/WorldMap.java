@@ -7,6 +7,8 @@ import java.util.HashMap;
 
 
 public class WorldMap{
+    private final String startPosition = "modul mesic";
+    private String currentPosition = startPosition;
     HashMap<String,Location> locations = new HashMap<>();
     public boolean loadMap(){
         try (BufferedReader br = new BufferedReader(new FileReader("worldMap.txt"))) {
@@ -25,6 +27,13 @@ public class WorldMap{
         return true;
     }
 
+    public String getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public void setCurrentPosition(String currentPosition) {
+        this.currentPosition = currentPosition;
+    }
 }
 
 
