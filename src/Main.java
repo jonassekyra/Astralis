@@ -1,7 +1,10 @@
+import Command.GoTo;
+
 public class Main {
     public static void main(String[] args) {
-        GoTo gt = new GoTo();
-        System.out.println(gt.execute());
+        Console c = new Console();
+        c.start();
+
 
 
 
