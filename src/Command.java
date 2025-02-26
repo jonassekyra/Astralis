@@ -1,4 +1,4 @@
-public interface Comand {
+public interface Command {
     String execute();
 
     boolean exit();
