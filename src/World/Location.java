@@ -1,4 +1,4 @@
-import java.util.Arrays;
+package World;
 
 public class Location {
     private String name;
@@ -16,11 +16,4 @@ public class Location {
     public Location() {
     }
 
-    @Override
-    public String toString() {
-        return "Location{" +
-                "name='" + name + '\'' +
-                ", posibleLocations=" + Arrays.toString(posibleLocations) +
-                '}';
-    }
 }

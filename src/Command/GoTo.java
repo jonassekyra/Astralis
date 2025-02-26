@@ -1,3 +1,6 @@
+package Command;
+import World.WorldMap;
+import World.Location;
 import java.util.Arrays;
 import java.util.Scanner;
 

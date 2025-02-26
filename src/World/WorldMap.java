@@ -1,3 +1,5 @@
+package World;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,7 +11,7 @@ import java.util.HashMap;
 public class WorldMap{
     private final String startPosition = "modul mesic";
     private String currentPosition = startPosition;
-    HashMap<String,Location> locations = new HashMap<>();
+    public HashMap<String, Location> locations = new HashMap<>();
     public boolean loadMap(){
         try (BufferedReader br = new BufferedReader(new FileReader("worldMap.txt"))) {
             String line;
