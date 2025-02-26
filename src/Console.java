@@ -13,5 +13,28 @@ public class Console {
 
     Scanner sc = new Scanner(System.in);
 
+    public void doCommand(){
+        System.out.println("-->>");
+        String input = sc.nextLine().trim().toLowerCase();
+        if (commands.containsKey(input)){
+            System.out.println("-->> " + commands.get(input).execute());
+
+        }else {
+            System.out.println("nedefinovany prikaz");
+        }
+
+    }
+
+    public void start(){
+        inicialization();
+        try{
+            do{
+                doCommand();
+            }while(!exit);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
 
 }
