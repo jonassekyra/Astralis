@@ -34,6 +34,10 @@ public class WorldMap{
     public void setCurrentPosition(String currentPosition) {
         this.currentPosition = currentPosition;
     }
+
+    public WorldMap() {
+        loadMap();
+    }
 }
 
 
