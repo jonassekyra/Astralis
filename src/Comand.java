@@ -1,2 +1,3 @@
-public class Comand {
+public interface Comand {
+    
 }
