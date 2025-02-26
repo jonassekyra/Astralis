@@ -9,6 +9,10 @@ public class Location {
         this.posibleLocations = posibleLocations;
     }
 
+    public String[] getPosibleLocations() {
+        return posibleLocations;
+    }
+
     public Location() {
     }
 
