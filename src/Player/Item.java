@@ -1,6 +1,9 @@
 package Player;
 
 public class Item {
-    public Item() {
-    }
+    private String name;
+    private String description;
+
+
+
 }
