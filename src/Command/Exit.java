@@ -1,4 +1,13 @@
 package Command;
 
-public class Exit {
+public class Exit implements Command {
+    @Override
+    public String execute() {
+        return "hra byla ukoncena";
+    }
+
+    @Override
+    public boolean exit() {
+        return true;
+    }
 }
