@@ -2,6 +2,7 @@ import Command.*;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Console {
     private boolean exit = false;
@@ -9,6 +10,13 @@ public class Console {
 
     public void inicialization(){
         commands.put("go to", new GoTo());
+        commands.put("exit", new Exit());
+        commands.put("examine", new Examine());
+        commands.put("grab", new Grab());
+        commands.put("look around", new LookAround());
+        commands.put("say", new Say());
+        commands.put("use", new Use());
+        commands.put("speak to", new SpeakTo());
     }
 
     Scanner sc = new Scanner(System.in);
