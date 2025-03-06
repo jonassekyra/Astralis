@@ -29,6 +29,10 @@ public class WorldMap{
         return true;
     }
 
+    public void loadItems(){
+        
+    }
+
     public String getCurrentPosition() {
         return currentPosition;
     }
