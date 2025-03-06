@@ -1,14 +1,15 @@
 package Player;
 
+import World.Task;
 import World.WorldMap;
 
 import java.util.ArrayList;
 
 public class Player {
     private Backpack inventory;
-    private ArrayList<Item> allTasks;
-    private ArrayList<Item> completedTasks;
-    private ArrayList<Item> accesibleTasks;
+    private ArrayList<Task> allTasks;
+    private ArrayList<Task> completedTasks;
+    private ArrayList<Task> accesibleTasks;
     private WorldMap worldMap;
 
 
