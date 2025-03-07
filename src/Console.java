@@ -26,6 +26,7 @@ public class Console {
         String input = sc.nextLine().trim().toLowerCase();
         if (commands.containsKey(input)){
             System.out.println("-->> " + commands.get(input).execute());
+            exit = commands.get(input).exit();
 
         }else {
             System.out.println("nedefinovany prikaz");
