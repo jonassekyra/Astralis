@@ -1,4 +1,5 @@
 import Command.*;
+import World.WorldMap;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -7,9 +8,10 @@ import java.util.Set;
 public class Console {
     private boolean exit = false;
     private HashMap<String, Command> commands = new HashMap<String, Command>();
+    WorldMap world = new WorldMap();
 
     public void inicialization(){
-        commands.put("go to", new GoTo());
+        commands.put("go to", new GoTo(world));
         commands.put("exit", new Exit());
         commands.put("examine", new Examine());
         commands.put("grab", new Grab());
