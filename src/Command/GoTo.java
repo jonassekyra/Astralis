@@ -5,9 +5,12 @@ import java.util.Scanner;
 
 public class GoTo implements Command {
     Scanner sc = new Scanner(System.in);
-    WorldMap worldMap = new WorldMap();
+    private WorldMap worldMap;
     private String currentLocation;
 
+    public GoTo(WorldMap worldMap) {
+        this.worldMap = worldMap;
+    }
 
     @Override
     public String execute() {
