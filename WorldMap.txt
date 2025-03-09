@@ -1,4 +1,4 @@
-modul mesic-modul mars-modul europa-modul titan-modul pluto-jeskyne-zaklada
+modul mesic-modul mars-modul europa-modul titan-modul pluto-jeskyne-zakladna
 modul mars-modul mesic-modul europa-modul titan-modul pluto-znicena vedecka stanice
 modul europa-modul mars-modul cernymesic-modul titan-modul pluto-zmrazeny chram
 modul titan-modul mars-modul mesic-modul europa-modul pluto-cerny trh
