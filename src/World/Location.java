@@ -22,6 +22,10 @@ public class Location {
         return posibleLocations;
     }
 
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
     public Location() {
     }
 
