@@ -18,10 +18,15 @@ public class Grab implements Command {
     @Override
     public String execute() {
         Item input = new Item(sc.nextLine());
-        if (worldMap.locations.get(worldMap.getCurrentPosition()).getItems().contains(input)) {
-            p.addItem(input);
-            worldMap.locations.get(worldMap.getCurrentPosition()).getItems().remove(input);
+        if (worldMap.locations.get(worldMap.getCurrentPosition()).isExamined()){
+            if (worldMap.locations.get(worldMap.getCurrentPosition()).getItems().contains(input)) {
+                p.addItem(input);
+                worldMap.locations.get(worldMap.getCurrentPosition()).getItems().remove(input);
+        }
 
+
+        }else {
+            return "you haven't examined this location";
         }
         return " items: "+ p.getItems().toString();
     }
