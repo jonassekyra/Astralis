@@ -11,11 +11,14 @@ public class Location {
     private String[] posibleLocations;
     private ArrayList<Item> items;
     private HashSet<NPC> NPCS;
+    private boolean isExamined = false;
 
-    public Location(String name, String[] posibleLocations, ArrayList<Item> items) {
+
+    public Location(String name, String[] posibleLocations, ArrayList<Item> items, HashSet<NPC> NPCS) {
         this.name = name;
         this.posibleLocations = posibleLocations;
         this.items = items;
+        this.NPCS = NPCS;
     }
 
     public String[] getPosibleLocations() {
@@ -34,7 +37,16 @@ public class Location {
         return "Location{" +
                 "name='" + name + '\'' +
                 ", posibleLocations=" + Arrays.toString(posibleLocations) +
-                ", items=" + items+
+                ", items=" + items +
+                ", NPCS=" + NPCS +
                 '}';
+    }
+
+    public boolean isExamined() {
+        return isExamined;
+    }
+
+    public void setExamined(boolean examined) {
+        isExamined = examined;
     }
 }
