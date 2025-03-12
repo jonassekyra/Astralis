@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Grab implements Command {
     private WorldMap worldMap;
-    private Player p;
+    private final Player p;
     Scanner sc = new Scanner(System.in);
 
     public Grab(WorldMap worldMap, Player p) {
@@ -23,7 +23,6 @@ public class Grab implements Command {
                 p.addItem(input);
                 worldMap.locations.get(worldMap.getCurrentPosition()).getItems().remove(input);
         }
-
 
         }else {
             return "you haven't examined this location";

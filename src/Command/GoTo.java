@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class GoTo implements Command {
     Scanner sc = new Scanner(System.in);
-    private WorldMap worldMap;
+    private final WorldMap worldMap;
     private String currentLocation;
 
     public GoTo(WorldMap worldMap) {
@@ -20,11 +20,9 @@ public class GoTo implements Command {
         if (worldMap.locations.containsKey(input)) {
             if (Arrays.asList(worldMap.locations.get(currentLocation).getPosibleLocations()).contains(input)) {
                 worldMap.setCurrentPosition(input);
-
         }else {
                 System.out.println("do teto lokace se odsud nedostanete");
             }
-
     }else {
             System.out.println("lokace nexistuje");
         }

@@ -3,7 +3,7 @@ package Command;
 import Player.Player;
 
 public class showTasks implements Command {
-    private Player player;
+    private final Player player;
 
     @Override
     public String execute() {

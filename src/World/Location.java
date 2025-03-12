@@ -29,6 +29,10 @@ public class Location {
         return items;
     }
 
+    public HashSet<NPC> getNPCS() {
+        return NPCS;
+    }
+
     public Location() {
     }
 

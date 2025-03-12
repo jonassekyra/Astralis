@@ -72,10 +72,10 @@ public class WorldMap {
                 currentLine++;
                 if (currentLine == line) {
                     String[] lines = line1.split("-");
-                    for (int i = 0; i < lines.length; i++) {
-                        NPC npc = new NPC(lines[i]);
+                    String[] dialogs = Arrays.copyOfRange(lines,1,lines.length);
+                    ArrayList<String> dialogsList = new ArrayList<>(Arrays.asList(dialogs));
+                        NPC npc = new NPC(lines[0],dialogsList);
                         npcs.add(npc);
-                    }
                 }
             }
 
@@ -98,6 +98,7 @@ public class WorldMap {
     public WorldMap() {
         loadMap();
     }
+
 }
 
 

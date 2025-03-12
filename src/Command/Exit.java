@@ -5,7 +5,6 @@ public class Exit implements Command {
     public String execute() {
         return "hra byla ukoncena";
     }
-
     @Override
     public boolean exit() {
         return true;
