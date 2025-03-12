@@ -1,4 +1,5 @@
 import Command.*;
+import Player.Player;
 import World.WorldMap;
 
 import java.util.HashMap;
@@ -9,16 +10,19 @@ public class Console {
     private boolean exit = false;
     private HashMap<String, Command> commands = new HashMap<String, Command>();
     WorldMap world = new WorldMap();
+    Player p = new Player();
 
-    public void inicialization(){
+    public void initialization(){
+        p.loadTasks();
         commands.put("go to", new GoTo(world));
         commands.put("exit", new Exit());
-        commands.put("examine", new Examine());
-        commands.put("grab", new Grab());
-        commands.put("look around", new LookAround());
-        commands.put("say", new Say());
-        commands.put("use", new Use());
-        commands.put("speak to", new SpeakTo());
+        commands.put("examine", new Examine(world));
+        commands.put("grab", new Grab(world,p));
+        commands.put("look around", new LookAround(world));
+        commands.put("say", new Say(world));
+        commands.put("use", new Use(p));
+        commands.put("speak to", new SpeakTo(world));
+        commands.put("show tasks", new showTasks(p));
     }
 
     Scanner sc = new Scanner(System.in);
@@ -37,7 +41,7 @@ public class Console {
     }
 
     public void start(){
-        inicialization();
+        initialization();
         try{
             do{
                 doCommand();
