@@ -52,7 +52,7 @@ public class Grab implements Command {
 
             }
         }
-        return "uspesne sebrano";
+        return "item neexistuje";
     }
             @Override
             public boolean exit () {
