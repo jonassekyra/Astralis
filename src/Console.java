@@ -14,14 +14,14 @@ public class Console {
 
     public void initialization(){
         p.loadTasks();
-        commands.put("go to", new GoTo(world));
+        commands.put("go to", new GoTo(world,p));
         commands.put("exit", new Exit());
         commands.put("examine", new Examine(world));
         commands.put("grab", new Grab(world,p));
         commands.put("look around", new LookAround(world));
         commands.put("say", new Say(world));
-        commands.put("use", new Use(p));
-        commands.put("speak to", new SpeakTo(world));
+        commands.put("use", new Use(p,world));
+        commands.put("speak to", new SpeakTo(world,p));
         commands.put("show tasks", new showTasks(p));
     }
 
