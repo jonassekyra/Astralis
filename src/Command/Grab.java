@@ -5,6 +5,7 @@ import Player.Player;
 import World.Task;
 import World.WorldMap;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -32,32 +33,29 @@ public class Grab implements Command {
                     p.addItem(item);
                     it.remove();
                     System.out.println("Sebral jsi: " + item.getName());
-
-                    for (Task task : p.getAllTasks()) {
-
+                    Iterator<Task> taskIterator = p.getAllTasks().iterator();
+                    while (taskIterator.hasNext()) {
+                        Task task = taskIterator.next();
                         if (task.getUnlockedCondition().equals(input)) {
-                            p.addAccesibleTask(task);
+                            p.getAccesibleTasks().add(task);
                             System.out.println("novy ukol: " + task.getText());
                         }
+
                         if (task.getRequiredItemOrInteraction().equals(input) && task.getRequiredLocation().equals(location)) {
+                            taskIterator.remove();
                             p.compleateTask(task);
                             System.out.println("ukol splnen");
                         }
-
                     }
-                    return "uspesne sebrano";
+                    return "ukoly aktualizovany";
                 }
 
             }
-        } else {
-            return "nejdrive prohledejte lokaci";
         }
-
-        return "tento item tu neni";
+        return "uspesne sebrano";
     }
-
-    @Override
-    public boolean exit() {
-        return false;
-    }
-}
+            @Override
+            public boolean exit () {
+                return false;
+            }
+        }
