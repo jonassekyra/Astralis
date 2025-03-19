@@ -1,0 +1,6 @@
+Najdi palivo do modulu.,start,zakladna,palivo
+Pridej palivo do modulu.,palivo,modul mesic,palivo
+Odlet na Mars.,palivo,modul mars,modul mars
+Najdi nekoho kdo ti pomuze.,modul mars,znicena vedecka stanice,vedec
+Najdi filtr na mesici.,vedec,jeskyne,filtr
+Dones filtr vedci.,filtr,znicena vedecka stanice,vedec
