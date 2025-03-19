@@ -22,7 +22,12 @@ public class GoTo implements Command {
         String input = sc.nextLine();
         if (worldMap.locations.containsKey(input)) {
             if (Arrays.asList(worldMap.locations.get(worldMap.getCurrentPosition()).getPosibleLocations()).contains(input)) {
-                worldMap.setCurrentPosition(input);
+                if (player.canTravelTo(input)){
+                    worldMap.setCurrentPosition(input);
+                }else {
+                    return "Sem jeste nemuzes";
+                }
+
                 //Iterator for unlocking new tasks
                 Iterator<Task> taksIterator = player.getAllTasks().iterator();
                 while (taksIterator.hasNext()) {
