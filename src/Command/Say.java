@@ -9,7 +9,8 @@ public class Say implements Command {
     private final WorldMap worldMap;
     @Override
     public String execute() {
-        if(worldMap.locations.get(worldMap.getCurrentPosition()).equals("zkamenely les")) {
+        String temp = worldMap.getCurrentPosition();
+        if(temp.equals("zkamenely les")) {
             System.out.println("Co chcete rict?");
             String input = sc.nextLine().trim().toLowerCase();
             if(input.equals("strom")) {
