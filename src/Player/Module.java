@@ -1,8 +1,17 @@
 package Player;
 
 public class Module {
-    private int upgrades;
-    private boolean fueledUp;
+    private int level = 0;
 
-    public void upgrade() {}
+    public void upgrade() {
+        level++;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 }
