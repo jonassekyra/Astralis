@@ -1,21 +1,22 @@
 package Player;
 
 import World.Task;
-import World.WorldMap;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.HashSet;
+import java.util.Iterator;
 
 public class Player {
     private ArrayList<Item> items;
-    private ArrayList<Task> allTasks;
+    private ArrayList<Task> allTasks = new ArrayList<>();
     private ArrayList<Task> completedTasks;
     private ArrayList<Task> accesibleTasks;
     private Module module;
+    private boolean didSomething;
 
     public void addItem(Item item) {
         items.add(item);
@@ -32,7 +33,7 @@ public class Player {
         this.module = new Module();
     }
 
-    public void compleateTask(Task task) {
+    public void completeTask(Task task) {
         completedTasks.add(task);
         accesibleTasks.remove(task);
     }
@@ -43,13 +44,28 @@ public class Player {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                Task task = new Task(parts[0], parts[1], parts[2], parts[3]);
-                if (!parts[1].equals("start")) {
-                    allTasks.add(task);
+                String text = parts[0];
+                String unlockedCondition = parts[1];
+                String requiredLocation = parts[2];
+                String requiredItemOrInteraction = parts[3];
 
+                if (parts.length >= 5 && !parts[4].isEmpty()) {
+                    Item reward = new Item(parts[4]);
+                    Task task = new Task(text, unlockedCondition, requiredLocation, requiredItemOrInteraction, reward);
+                    if (!parts[1].equals("start")) {
+                        allTasks.add(task);
+                    } else {
+                        accesibleTasks.add(task);
+                    }
                 } else {
-                    accesibleTasks.add(task);
-                    allTasks.add(task);
+                    Task task = new Task(text, unlockedCondition, requiredLocation, requiredItemOrInteraction);
+                    if (!parts[1].equals("start")) {
+                        allTasks.add(task);
+                    } else {
+                        accesibleTasks.add(task);
+
+                    }
+
                 }
 
             }
@@ -74,17 +90,27 @@ public class Player {
         return completedTasks;
     }
 
+    public boolean isDidSomething() {
+        return didSomething;
+    }
+
     public boolean canUseItem(Item item, String currentLocation) {
         for (Task task : allTasks) {
-            if ((task.getRequiredLocation() != null && task.getRequiredLocation().equals(currentLocation) && task.getRequiredItemOrInteraction() != null && task.getRequiredItemOrInteraction().equals(item.getName()))) {
-                return true;
-            }
-            if (task.getUnlockedCondition() != null && task.getUnlockedCondition().equals(item.getName()) && getAccesibleTasks() != null && !getAccesibleTasks().contains(task)) {
+            if (task.getUnlockedCondition().equals(item.getName())) {
+                System.out.println("all tasks");
                 return true;
             }
 
         }
+        Iterator<Task> accTasks = accesibleTasks.iterator();
+        while (accTasks.hasNext()) {
+            Task task = accTasks.next();
+            if (task.getRequiredItemOrInteraction() != null && task.getRequiredItemOrInteraction().equals(item.getName()) && task.getRequiredLocation().equals(currentLocation)) {
+                return true;
+            }
+        }
         return false;
+
     }
 
     public boolean canTravelTo(String location) {
@@ -94,13 +120,8 @@ public class Player {
                     return true;
                 }
                 break;
-            case "modul europa":
+            case "modul europa", "modul titan":
                 if (module.getLevel() >= 2) {
-                    return true;
-                }
-                break;
-            case "modul titan":
-                if (module.getLevel() >= 3) {
                     return true;
                 }
                 break;
@@ -123,5 +144,59 @@ public class Player {
         }
     }
 
+    public String checkTaskCompletion(String input, String currentLocation) {
+        didSomething = false;
+        Iterator<Task> completeIterator = accesibleTasks.iterator();
+        HashSet<String> tasks = new HashSet<>();
+        while (completeIterator.hasNext()) {
 
+            Task task = completeIterator.next();
+
+            if (task.getRequiredItemOrInteraction() != null && task.getRequiredItemOrInteraction().equals(input) && task.getRequiredLocation().equals(currentLocation)) {
+                tasks.add(task.getText());
+
+                completeIterator.remove();
+                completeTask(task);
+
+
+                didSomething = true;
+
+                if (task.getReward() != null) {
+                    items.add(task.getReward());
+
+                }
+            }
+
+        }
+
+        if (didSomething) {
+            return "splnene ukoly: " + tasks;
+
+        } else {
+            return "zadne splnene ukoly";
+
+        }
+
+    }
+
+    public String checkForNewTasks(String input) {
+        didSomething = false;
+        Iterator<Task> taksIterator = allTasks.iterator();
+        HashSet<String> tasks = new HashSet<>();
+        while (taksIterator.hasNext()) {
+            Task task = taksIterator.next();
+            if (task.getUnlockedCondition().equals(input)) {
+                tasks.add(task.getText());
+                taksIterator.remove();
+                accesibleTasks.add(task);
+                didSomething = true;
+            }
+        }
+
+        if (didSomething) {
+            return "nove ukoly: " + accesibleTasks;
+        } else {
+            return "zadne nove ukoly";
+        }
+    }
 }
