@@ -5,11 +5,11 @@ modul titan-modul mars-modul mesic-modul europa-modul pluto-cerny trh
 modul pluto-modul mars-modul mesic-modul europa-modul titan-jeskyne-henryho novy dum
 zakladna-modul mesic
 jeskyne-modul mesic
-znicena vedecka stanice-podzemni bunkr-stary rover
+znicena vedecka stanice-podzemni bunkr-stary rover-modul mars
 podzemni bunkr-znicena vedecka stanice
 stary rover-znicena vedecka stanice
-zmrazeny chram-modul europa
-město v ledu-zmrazeny chram
-cerny trh-modul titan
+zmrazeny chram-modul europa-mesto v ledu
+mesto v ledu-zmrazeny chram
+cerny trh-zkamenely les-modul titan
 zkamenely les-cerny trh
-henryho novy dum-pluto modul
+henryho novy dum-modul pluto
