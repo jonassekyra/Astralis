@@ -3,7 +3,7 @@ package Player;
 import java.util.Objects;
 
 public class Item {
-    private String name;
+    private final String name;
 
     public Item(String name) {
         this.name = name;
