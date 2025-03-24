@@ -1,16 +1,25 @@
 package World;
 
+import Player.Item;
+
+import java.util.Iterator;
+
 public class Task {
     private String text;
     private boolean completed = false;
     private String unlockedCondition;
     private String requiredLocation;
-    private String requiredItemOrInteraction;
+    private final String requiredItemOrInteraction;
+    private Item reward;
 
-    public Task(String text, String unlockedCondition) {
+
+
+    public Task(String text, String unlockedCondition, String requiredLocation, String requiredItemOrInteraction,Item reward) {
         this.text = text;
         this.unlockedCondition = unlockedCondition;
-
+        this.requiredLocation = requiredLocation;
+        this.requiredItemOrInteraction = requiredItemOrInteraction;
+        this.reward = reward;
     }
 
     public Task(String text, String unlockedCondition, String requiredLocation, String requiredItemOrInteraction) {
@@ -18,6 +27,10 @@ public class Task {
         this.unlockedCondition = unlockedCondition;
         this.requiredLocation = requiredLocation;
         this.requiredItemOrInteraction = requiredItemOrInteraction;
+    }
+
+    public Item getReward() {
+        return reward;
     }
 
     @Override
@@ -64,5 +77,7 @@ public class Task {
     public void setRequiredItem(String requiredItem) {
         this.requiredLocation = requiredItem;
     }
+
+
 
 }
