@@ -1,10 +1,8 @@
 import Command.*;
 import Player.Player;
 import World.WorldMap;
-
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Console {
     private boolean exit = false;
@@ -28,6 +26,7 @@ public class Console {
     Scanner sc = new Scanner(System.in);
 
     public void doCommand(){
+        System.out.println("vase itemy: " + p.getItems());
         System.out.println("-->>");
         String input = sc.nextLine().trim().toLowerCase();
         if (commands.containsKey(input)){
@@ -45,7 +44,7 @@ public class Console {
         try{
             do{
                 doCommand();
-            }while(!exit);
+            }while(!exit|| !world.getCurrentPosition().equalsIgnoreCase("henryho novy dum"));
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
