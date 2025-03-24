@@ -19,35 +19,30 @@ public class SpeakTo implements Command {
 
     private final WorldMap worldMap;
     private final Player player;
+    boolean didSomething = false;
     @Override
     public String execute() {
+        boolean didSomething = false;
         Scanner sc = new Scanner(System.in);
         if (worldMap.locations.get(worldMap.getCurrentPosition()).isExamined()){
             if (!worldMap.locations.get(worldMap.getCurrentPosition()).getNPCS().isEmpty()){
                 System.out.println("S kym by jsi chtel mluvit");
                 String input = sc.nextLine().trim().toLowerCase();
                 //Iterator for unlocking new tasks
-                Iterator<Task> taksIterator = player.getAllTasks().iterator();
-                while (taksIterator.hasNext()) {
-                    Task task = taksIterator.next();
-                    if (task.getUnlockedCondition().equals(input)) {
-                        player.getAccesibleTasks().add(task);
-                        System.out.println("novy ukol: " + task.getText());
-                    }
-                }
-                Iterator<Task> completeIterator = player.getAllTasks().iterator();
-                while (completeIterator.hasNext()) {
-                    Task task = completeIterator.next();
-                    if (task.getRequiredItemOrInteraction().equals(input) && task.getRequiredLocation().equals(worldMap.getCurrentPosition())) {
-                        completeIterator.remove();
-                        player.compleateTask(task);
-                        System.out.println("ukol splnen");
-                    }
-                }
+                player.checkTaskCompletion(input,worldMap.getCurrentPosition());
+                player.checkForNewTasks(input);
+
+
+
+
+
                 for (NPC npc : worldMap.locations.get(worldMap.getCurrentPosition()).getNPCS()) {
                     if (input.equals(npc.getName())) {
                         String dialog = npc.getDialogs().get(npc.getDialogCount());
-                        npc.setDialogCount(npc.getDialogCount() + 1);
+                        if (didSomething) {
+                            npc.setDialogCount(npc.getDialogCount() + 1);
+                        }
+
                         return dialog;
                     }
                 }

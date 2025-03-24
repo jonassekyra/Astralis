@@ -1,11 +1,7 @@
 package Command;
-
 import Player.Item;
 import Player.Player;
-import World.Task;
 import World.WorldMap;
-
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -31,28 +27,21 @@ public class Grab implements Command {
                 Item item = it.next();
                 if (item.getName().equals(input)) {
                     p.addItem(item);
-                    it.remove();
+                    System.out.println(p.checkTaskCompletion(input, location));
+                    System.out.println(p.checkForNewTasks(input));
+
                     System.out.println("Sebral jsi: " + item.getName());
-                    Iterator<Task> taskIterator = p.getAllTasks().iterator();
-                    while (taskIterator.hasNext()) {
-                        Task task = taskIterator.next();
-                        if (task.getUnlockedCondition().equals(input)) {
-                            p.getAccesibleTasks().add(task);
-                            System.out.println("novy ukol: " + task.getText());
-                        }
-
-                        if (task.getRequiredItemOrInteraction().equals(input) && task.getRequiredLocation().equals(location)) {
-                            taskIterator.remove();
-                            p.compleateTask(task);
-                            System.out.println("ukol splnen");
-                        }
+                    it.remove();
+                    if (p.isDidSomething()){
+                        return "ukoly aktualizovany";
                     }
-                    return "ukoly aktualizovany";
                 }
-
             }
+        }else {
+            return "Nejdrive prohledejte lokaci.";
         }
-        return "item neexistuje";
+        return p.getItems().toString();
+
     }
             @Override
             public boolean exit () {

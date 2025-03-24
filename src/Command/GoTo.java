@@ -1,9 +1,7 @@
 package Command;
 import Player.Player;
-import World.Task;
 import World.WorldMap;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class GoTo implements Command {
@@ -24,28 +22,12 @@ public class GoTo implements Command {
             if (Arrays.asList(worldMap.locations.get(worldMap.getCurrentPosition()).getPosibleLocations()).contains(input)) {
                 if (player.canTravelTo(input)){
                     worldMap.setCurrentPosition(input);
+                    System.out.println(player.checkForNewTasks(input));
+                    System.out.println(player.checkTaskCompletion(input,worldMap.getCurrentPosition()));
                 }else {
                     return "Sem jeste nemuzes";
                 }
 
-                //Iterator for unlocking new tasks
-                Iterator<Task> taksIterator = player.getAllTasks().iterator();
-                while (taksIterator.hasNext()) {
-                    Task task = taksIterator.next();
-                    if (task.getUnlockedCondition().equals(input)) {
-                        player.getAccesibleTasks().add(task);
-                        System.out.println("novy ukol: " + task.getText());
-                    }
-                }
-                Iterator<Task> completeIterator = player.getAllTasks().iterator();
-                while (completeIterator.hasNext()) {
-                    Task task = completeIterator.next();
-                    if (task.getRequiredItemOrInteraction().equals(input) && task.getRequiredLocation().equals(worldMap.getCurrentPosition())) {
-                        completeIterator.remove();
-                        player.compleateTask(task);
-                        System.out.println("ukol splnen");
-                    }
-                }
 
         }else {
                 System.out.println("do teto lokace se odsud nedostanete");
