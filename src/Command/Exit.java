@@ -1,5 +1,7 @@
 package Command;
-
+/**
+ * Stops program
+ */
 public class Exit implements Command {
     @Override
     public String execute() {

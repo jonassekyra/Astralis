@@ -13,7 +13,14 @@ public class Task {
     private Item reward;
 
 
-
+    /**
+     * Constructor to create tasks with reward.
+     * @param text
+     * @param unlockedCondition
+     * @param requiredLocation
+     * @param requiredItemOrInteraction
+     * @param reward
+     */
     public Task(String text, String unlockedCondition, String requiredLocation, String requiredItemOrInteraction,Item reward) {
         this.text = text;
         this.unlockedCondition = unlockedCondition;
@@ -22,6 +29,13 @@ public class Task {
         this.reward = reward;
     }
 
+    /**
+     * Constructor to create tasks without reward.
+     * @param text
+     * @param unlockedCondition
+     * @param requiredLocation
+     * @param requiredItemOrInteraction
+     */
     public Task(String text, String unlockedCondition, String requiredLocation, String requiredItemOrInteraction) {
         this.text = text;
         this.unlockedCondition = unlockedCondition;

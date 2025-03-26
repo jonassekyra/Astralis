@@ -4,7 +4,9 @@ import Player.Player;
 import World.WorldMap;
 import java.util.Iterator;
 import java.util.Scanner;
-
+/**
+ * Used for getting items into inventory
+ */
 public class Grab implements Command {
     private WorldMap worldMap;
     private Player p;
@@ -15,6 +17,10 @@ public class Grab implements Command {
         this.p = p;
     }
 
+    /**
+     * Iterates trough items from location, if it's same as input it checks for new or completed tasks.
+     * @return item that was picked up.
+     */
     @Override
     public String execute() {
         if (worldMap.locations.get(worldMap.getCurrentPosition()).isExamined()) {
@@ -25,15 +31,17 @@ public class Grab implements Command {
             Iterator<Item> it = worldMap.locations.get(worldMap.getCurrentPosition()).getItems().iterator();
             while (it.hasNext()) {
                 Item item = it.next();
-                if (item.getName().equals(input)) {
+                if (item.name().equals(input)) {
                     p.addItem(item);
                     System.out.println(p.checkTaskCompletion(input, location));
                     System.out.println(p.checkForNewTasks(input));
 
-                    System.out.println("Sebral jsi: " + item.getName());
+
                     it.remove();
                     if (p.isDidSomething()){
-                        return "ukoly aktualizovany";
+                        return "ukoly aktualizovany," + "sebral jsi" + item.name();
+                    }else {
+                        return "sebral jsi" + item.name();
                     }
                 }
             }

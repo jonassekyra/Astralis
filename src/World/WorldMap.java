@@ -1,5 +1,4 @@
 package World;
-
 import Player.Item;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,8 +12,10 @@ public class WorldMap {
     private String currentPosition = startPosition;
     public HashMap<String, Location> locations = new HashMap<>();
 
-
-    public boolean loadMap() {
+    /**
+     * Loads map of the world from file and adds it to hashMap
+     */
+    public void loadMap() {
         try (BufferedReader br = new BufferedReader(new FileReader("worldMap.txt"))) {
             String line;
             int temp = 0;
@@ -32,9 +33,13 @@ public class WorldMap {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return true;
     }
 
+    /**
+     * Loads Items from file by taking line input from LoadMap, and it loads just the line it should so it can be in the same location.
+     * @param line input from LoadMap()
+     * @return ArrayList of items
+     */
     public ArrayList<Item> loadItems(int line) {
         ArrayList<Item> items = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("Items.txt"))) {
@@ -58,6 +63,11 @@ public class WorldMap {
         return items;
     }
 
+    /**
+     * Loads NPCS from file by taking line input from LoadMap, and it loads just the line it should so it can be in the same location.
+     * @param line input from LoadMap()
+     * @return HashSet of npcs
+     */
     public HashSet<NPC> loadNPC(int line) {
         HashSet<NPC> npcs = new HashSet<>();
         try (BufferedReader br = new BufferedReader(new FileReader("Npcs.txt"))){

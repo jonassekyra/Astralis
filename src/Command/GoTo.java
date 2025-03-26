@@ -4,6 +4,9 @@ import World.WorldMap;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ *Travel across locations
+ */
 public class GoTo implements Command {
     Scanner sc = new Scanner(System.in);
     private final WorldMap worldMap;
@@ -14,10 +17,14 @@ public class GoTo implements Command {
         this.player = player;
     }
 
+    /**
+     * Checks the players input with hashMap keys, then if you can travel to it and if there are any new or completed tasks.
+     * @return players current location
+     */
     @Override
     public String execute() {
         System.out.println("kam chcete jit?");
-        String input = sc.nextLine();
+        String input = sc.nextLine().toLowerCase().trim();
         if (worldMap.locations.containsKey(input)) {
             if (Arrays.asList(worldMap.locations.get(worldMap.getCurrentPosition()).getPosibleLocations()).contains(input)) {
                 if (player.canTravelTo(input)){
@@ -37,6 +44,10 @@ public class GoTo implements Command {
         }
 
         return "jste v: " + worldMap.getCurrentPosition() ;
+    }
+
+    public void setSc(Scanner sc) {
+        this.sc = sc;
     }
 
     @Override

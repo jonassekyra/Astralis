@@ -1,17 +1,7 @@
 package Player;
-
 import java.util.Objects;
 
-public class Item {
-    private final String name;
-
-    public Item(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
+public record Item(String name) {
 
     @Override
     public String toString() {
@@ -28,8 +18,4 @@ public class Item {
         return Objects.equals(name, item.name);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(name);
-    }
 }

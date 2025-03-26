@@ -1,7 +1,5 @@
 package Player;
-
 import World.Task;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,14 +8,21 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
+/**
+ * player
+ */
 public class Player {
     private ArrayList<Item> items;
-    private ArrayList<Task> allTasks = new ArrayList<>();
+    private ArrayList<Task> allTasks;
     private ArrayList<Task> completedTasks;
-    private ArrayList<Task> accesibleTasks;
-    private Module module;
+    private ArrayList<Task> accessibleTasks;
+    private final Module module;
     private boolean didSomething;
 
+    /**
+     * adds item to inventory
+     * @param item
+     */
     public void addItem(Item item) {
         items.add(item);
     }
@@ -26,18 +31,32 @@ public class Player {
         return items;
     }
 
+    public Module getModule() {
+        return module;
+    }
+
     public Player() {
         this.items = new ArrayList<Item>();
-        this.accesibleTasks = new ArrayList<>();
+        this.accessibleTasks = new ArrayList<>();
         this.completedTasks = new ArrayList<>();
+        this.allTasks = new ArrayList<>();
         this.module = new Module();
     }
 
+    /**
+     * Adds task to completed tasks.
+     * Removes task from accessible tasks.
+     * @param task
+     */
     public void completeTask(Task task) {
         completedTasks.add(task);
-        accesibleTasks.remove(task);
+        accessibleTasks.remove(task);
     }
 
+    /**
+     *loads tasks from file.
+     * If the length of the line is 5 it also adds reward
+     */
     public void loadTasks() {
         allTasks = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("tasks.txt"))) {
@@ -55,14 +74,14 @@ public class Player {
                     if (!parts[1].equals("start")) {
                         allTasks.add(task);
                     } else {
-                        accesibleTasks.add(task);
+                        accessibleTasks.add(task);
                     }
                 } else {
                     Task task = new Task(text, unlockedCondition, requiredLocation, requiredItemOrInteraction);
                     if (!parts[1].equals("start")) {
                         allTasks.add(task);
                     } else {
-                        accesibleTasks.add(task);
+                        accessibleTasks.add(task);
 
                     }
 
@@ -77,8 +96,8 @@ public class Player {
         }
     }
 
-    public ArrayList<Task> getAccesibleTasks() {
-        return accesibleTasks;
+    public ArrayList<Task> getAccessibleTasks() {
+        return accessibleTasks;
     }
 
 
@@ -86,26 +105,27 @@ public class Player {
         return allTasks;
     }
 
-    public ArrayList<Task> getCompletedTasks() {
-        return completedTasks;
-    }
 
     public boolean isDidSomething() {
         return didSomething;
     }
 
+    /**
+     *Check if the item can either start new task or complete one.
+     * @param item the player wants to use.
+     * @param currentLocation of the player.
+     * @return True if item can update tasks.
+     */
     public boolean canUseItem(Item item, String currentLocation) {
         for (Task task : allTasks) {
-            if (task.getUnlockedCondition().equals(item.getName())) {
-                System.out.println("all tasks");
+            if (task.getUnlockedCondition().equals(item.name())) {
                 return true;
             }
 
         }
-        Iterator<Task> accTasks = accesibleTasks.iterator();
-        while (accTasks.hasNext()) {
-            Task task = accTasks.next();
-            if (task.getRequiredItemOrInteraction() != null && task.getRequiredItemOrInteraction().equals(item.getName()) && task.getRequiredLocation().equals(currentLocation)) {
+        for (Task task : accessibleTasks) {
+            if (task.getRequiredItemOrInteraction() != null && task.getRequiredItemOrInteraction().equals(item.name())
+                    && task.getRequiredLocation().equals(currentLocation)) {
                 return true;
             }
         }
@@ -113,6 +133,12 @@ public class Player {
 
     }
 
+    /**
+     * Uses switch to check if the player has a required level of module so he can travel to a new planet.
+     * Default is true so if the input isn't a planet the player can go there without problems.
+     * @param location the player wants to go to.
+     * @return true if the level of module is high enough.
+     */
     public boolean canTravelTo(String location) {
         switch (location) {
             case "modul mars":
@@ -138,15 +164,26 @@ public class Player {
         return false;
     }
 
+    /**
+     * Check if the item the player wants to use can upgrade module, If so it upgrades module.
+     * @param item the player wants to use.
+     */
     public void canItUpgradeModule(String item) {
         if (item.equals("palivo") || item.equals("vylepseni modulu")) {
             module.upgrade();
         }
     }
 
+    /**
+     * Checks for completed task by Iterating trough accessible task and checking if the required location and itemOrInteraction matach the
+     * current location and input
+     * @param input from player(item,name of npc,location)
+     * @param currentLocation of the player
+     * @return list of completed tasks
+     */
     public String checkTaskCompletion(String input, String currentLocation) {
         didSomething = false;
-        Iterator<Task> completeIterator = accesibleTasks.iterator();
+        Iterator<Task> completeIterator = accessibleTasks.iterator();
         HashSet<String> tasks = new HashSet<>();
         while (completeIterator.hasNext()) {
 
@@ -179,6 +216,11 @@ public class Player {
 
     }
 
+    /**
+     * Checks for new tasks by Iterating trough allTasks and checking if the user input matches the unlock condition.
+     * @param input from player(item,name of npc,location)
+     * @return Array of new tasks.
+     */
     public String checkForNewTasks(String input) {
         didSomething = false;
         Iterator<Task> taksIterator = allTasks.iterator();
@@ -188,13 +230,13 @@ public class Player {
             if (task.getUnlockedCondition().equals(input)) {
                 tasks.add(task.getText());
                 taksIterator.remove();
-                accesibleTasks.add(task);
+                accessibleTasks.add(task);
                 didSomething = true;
             }
         }
 
         if (didSomething) {
-            return "nove ukoly: " + accesibleTasks;
+            return "nove ukoly: " + accessibleTasks;
         } else {
             return "zadne nove ukoly";
         }

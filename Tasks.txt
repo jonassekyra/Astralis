@@ -1,9 +1,9 @@
-Najdi palivo do modulu.,start,zakladna,palivo,
+Najdi palivo do modulu.,start,zakladna,palivo
 Pridej palivo do modulu.,palivo,modul mesic,palivo
 Odlet na Mars.,palivo,modul mars,modul mars
 Najdi nekoho kdo ti pomuze.,modul mars,znicena vedecka stanice,vedec
 Ziskej filtr.,vedec,stary rover,naradi,filtr
-Dones filtr vedci.,filtr,znicena vedecka stanice,filtr,vylepseni modulu
+Dones filtr vedci(use ve stanici).,naradi,znicena vedecka stanice,filtr,vylepseni modulu
 Vylepsi modul.,vedec,modul mars,vylepseni modulu
 Odlet na Europu.,vylepseni modulu,modul europa,modul europa
 S nekym si promluv.,modul europa,mesto v ledu,mimozemstan oscar
@@ -12,3 +12,7 @@ Zkus se pro prisady podivat na titan.,mimozemstan oscar,modul titan,modul titan
 Vymen neco vzacneho za stribrnou rasu.,obchodnik,cerny trh,artefakt,stribrna rasa
 Ziskej draci koren.,modul titan,zkamenely les,strom,draci koren
 Vytvor s vedcem lek proti viru.,strom,znicena vedecka stanice,vedec,lek proti viru
+Pouzij lek ve meste v ledu.,strom,mesto v ledu,lek proti viru,vylepseni modulu
+vylepsi modul.,lek proti viru,modul europa,vylepseni modulu
+Odlet na pluto.,vylepseni modulu,modul pluto,modul pluto
+Dojdi do tveho noveho domu a odemkni.,modul pluto,henryho novy dum,klic

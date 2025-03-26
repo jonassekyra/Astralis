@@ -5,11 +5,20 @@ import World.WorldMap;
 import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * used for using an item
+ */
 public class Use implements Command {
     private final Player player;
     private final WorldMap worldMap;
     Scanner sc = new Scanner(System.in);
 
+    /**
+     * Iterates trough players items and checks for match with input.
+     * Checks if the player can use certain item at that time and if it can upgrade module.
+     * checks for new or competed tasks.
+     * @return used or not
+     */
     @Override
     public String execute() {
         if (player.getItems().isEmpty()) {
@@ -23,7 +32,7 @@ public class Use implements Command {
         while (it.hasNext()) {
             Item item = it.next();
 
-            if (item.getName().equalsIgnoreCase(input)) {
+            if (item.name().equalsIgnoreCase(input)) {
 
 
                 if (!player.canUseItem(item, worldMap.getCurrentPosition())) {
@@ -33,7 +42,7 @@ public class Use implements Command {
                 }
                 player.canItUpgradeModule(input);
 
-                if (player.getAllTasks() != null|| player.getAccesibleTasks() != null) {
+                if (player.getAllTasks() != null|| player.getAccessibleTasks() != null) {
                     it.remove();
                     System.out.println(player.checkForNewTasks(input));
                     System.out.println(player.checkTaskCompletion(input, worldMap.getCurrentPosition()));

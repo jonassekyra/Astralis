@@ -4,21 +4,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class NPC {
-    private ArrayList<String> dialogs;
-    private String name;
-    private int dialogCount = 0;
+    private final ArrayList<String> dialogs;
+    private final String name;
+    private int dialogCount = -1;
 
-    public NPC(String name) {
-        this.name = name;
-    }
-
-
-    public boolean loadDialogs(){
-        return true;
-    }
-    public String talk(){
-        return null;
-    }
 
     public NPC(String name, ArrayList<String> dialogs) {
         this.name = name;

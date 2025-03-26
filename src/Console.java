@@ -4,12 +4,16 @@ import World.WorldMap;
 import java.util.HashMap;
 import java.util.Scanner;
 
+
 public class Console {
     private boolean exit = false;
-    private HashMap<String, Command> commands = new HashMap<String, Command>();
+    private final HashMap<String, Command> commands = new HashMap<String, Command>();
     WorldMap world = new WorldMap();
     Player p = new Player();
 
+    /**
+     * loads tasks and commands
+     */
     public void initialization(){
         p.loadTasks();
         commands.put("go to", new GoTo(world,p));
@@ -25,6 +29,9 @@ public class Console {
 
     Scanner sc = new Scanner(System.in);
 
+    /**
+     * here the player inputs commands
+     */
     public void doCommand(){
         System.out.println("vase itemy: " + p.getItems());
         System.out.println("-->>");
@@ -39,6 +46,9 @@ public class Console {
 
     }
 
+    /**
+     * gameloop that ends when the player stops the game or finishes it.
+     */
     public void start(){
         initialization();
         try{
