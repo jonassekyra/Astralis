@@ -1,0 +1,8 @@
+Help - Ukaze vsechny prikazy
+Go to - Posun do jine lokace
+Examine - Prohledani lokaci
+Grab - Seberani itemu
+Look around - Ukaze lokace, ktere vidite
+Use - Pouziti itemu
+Say - Postava neco rekne, napr v hadance
+Speak to - Promluveni s postavou
