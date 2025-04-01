@@ -21,7 +21,7 @@ public class Player {
 
     /**
      * adds item to inventory
-     * @param item
+     * @param item item that is added
      */
     public void addItem(Item item) {
         items.add(item);
@@ -46,7 +46,7 @@ public class Player {
     /**
      * Adds task to completed tasks.
      * Removes task from accessible tasks.
-     * @param task
+     * @param task that is being moved
      */
     public void completeTask(Task task) {
         completedTasks.add(task);
@@ -110,6 +110,10 @@ public class Player {
         return didSomething;
     }
 
+    public ArrayList<Task> getCompletedTasks() {
+        return completedTasks;
+    }
+
     /**
      *Check if the item can either start new task or complete one.
      * @param item the player wants to use.
@@ -152,7 +156,7 @@ public class Player {
                 }
                 break;
             case "modul pluto":
-                if (module.getLevel() >= 4) {
+                if (module.getLevel() >= 3) {
                     return true;
                 }
                 break;

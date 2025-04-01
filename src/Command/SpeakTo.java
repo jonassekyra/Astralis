@@ -1,10 +1,7 @@
 package Command;
 import Player.Player;
 import World.NPC;
-import Player.Item;
 import World.WorldMap;
-
-import javax.imageio.ImageTranscoder;
 import java.util.Scanner;
 
 
@@ -25,11 +22,8 @@ public class SpeakTo implements Command {
             if (!worldMap.locations.get(worldMap.getCurrentPosition()).getNPCS().isEmpty()){
                 System.out.println("S kym by jsi chtel mluvit");
                 String input = sc.nextLine().trim().toLowerCase();
-                //Iterator for unlocking new tasks
-                System.out.println(player.checkTaskCompletion(input,worldMap.getCurrentPosition()));
-                //System.out.println(player.checkTasksFromInventory());
                 System.out.println(player.checkForNewTasks(input));
-
+                System.out.println(player.checkTaskCompletion(input,worldMap.getCurrentPosition()));
 
                 for (NPC npc : worldMap.locations.get(worldMap.getCurrentPosition()).getNPCS()) {
                     if (input.equals("tajemna bytost")){

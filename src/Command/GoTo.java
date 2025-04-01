@@ -29,8 +29,8 @@ public class GoTo implements Command {
             if (Arrays.asList(worldMap.locations.get(worldMap.getCurrentPosition()).getPosibleLocations()).contains(input)) {
                 if (player.canTravelTo(input)){
                     worldMap.setCurrentPosition(input);
-                    System.out.println(player.checkForNewTasks(input));
                     System.out.println(player.checkTaskCompletion(input,worldMap.getCurrentPosition()));
+                    System.out.println(player.checkForNewTasks(input));
                 }else {
                     return "Sem jeste nemuzes";
                 }
@@ -40,7 +40,7 @@ public class GoTo implements Command {
                 System.out.println("do teto lokace se odsud nedostanete");
             }
     }else {
-            System.out.println("lokace nexistuje");
+            System.out.println("lokace nexistuje, zkontroluj jestli jsi napsal spravna nazev, pripadne se rozhledni");
         }
 
         return "jste v: " + worldMap.getCurrentPosition() ;

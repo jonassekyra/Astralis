@@ -8,8 +8,8 @@ import java.util.Scanner;
  * Used for getting items into inventory
  */
 public class Grab implements Command {
-    private WorldMap worldMap;
-    private Player p;
+    private final WorldMap worldMap;
+    private final Player p;
     Scanner sc = new Scanner(System.in);
 
     public Grab(WorldMap worldMap, Player p) {
@@ -39,10 +39,12 @@ public class Grab implements Command {
 
                     it.remove();
                     if (p.isDidSomething()){
-                        return "ukoly aktualizovany," + "sebral jsi" + item.name();
+                        return "ukoly aktualizovany, " + "sebral jsi: " + item.name();
                     }else {
                         return "sebral jsi" + item.name();
                     }
+                }else{
+                    return "neplatny item";
                 }
             }
         }else {

@@ -31,9 +31,6 @@ public class Location {
         return NPCS;
     }
 
-    public Location() {
-    }
-
     @Override
     public String toString() {
         return "Location{" +

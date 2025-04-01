@@ -49,8 +49,8 @@ public class WorldMap {
                 currentLine++;
                 if (currentLine == line) {
                     String[] lines = line1.split("-");
-                    for (int i = 0; i < lines.length; i++) {
-                        Item item = new Item(lines[i]);
+                    for (String s : lines) {
+                        Item item = new Item(s);
                         items.add(item);
                     }
                 }
