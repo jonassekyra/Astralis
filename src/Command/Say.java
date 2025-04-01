@@ -1,4 +1,5 @@
 package Command;
+import Player.Player;
 import World.WorldMap;
 import java.util.Scanner;
 
@@ -8,6 +9,7 @@ import java.util.Scanner;
 public class Say implements Command {
     Scanner sc = new Scanner(System.in);
     private final WorldMap worldMap;
+    Player player;
 
     /**
      * checks if the input equals to strom.
@@ -20,7 +22,11 @@ public class Say implements Command {
             System.out.println("Co chcete rict?");
             String input = sc.nextLine().trim().toLowerCase();
             if(input.equals("strom")) {
+
+                System.out.println( player.checkTaskCompletion(input,temp));
+                System.out.println(player.checkForNewTasks(input));
                 return "spravne";
+
             }else {
                 return "nope";
             }
@@ -34,7 +40,8 @@ public class Say implements Command {
         return false;
     }
 
-    public Say(WorldMap worldMap) {
+    public Say(WorldMap worldMap, Player player) {
         this.worldMap = worldMap;
+        this.player = player;
     }
 }
