@@ -22,15 +22,14 @@ public class SpeakTo implements Command {
             if (!worldMap.locations.get(worldMap.getCurrentPosition()).getNPCS().isEmpty()){
                 System.out.println("S kym by jsi chtel mluvit");
                 String input = sc.nextLine().trim().toLowerCase();
-                System.out.println(player.checkForNewTasks(input));
                 System.out.println(player.checkTaskCompletion(input,worldMap.getCurrentPosition()));
-
+                System.out.println(player.checkForNewTasks(input));
                 for (NPC npc : worldMap.locations.get(worldMap.getCurrentPosition()).getNPCS()) {
                     if (input.equals("tajemna bytost")){
                         npc.setDialogCount(npc.getDialogCount() + 1);
                         return npc.getDialogs().get(npc.getDialogCount());
                     } else if (input.equals(npc.getName())) {
-                        if (player.isDidSomething()) {
+                        if (player.isFoundNewTask()||player.isDidCompleteTask()) {
                             npc.setDialogCount(npc.getDialogCount() + 1);
                         }
                         return npc.getDialogs().get(npc.getDialogCount());

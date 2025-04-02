@@ -55,12 +55,16 @@ public class Console {
         try{
             System.out.println("Zadavejte pouze prikazy, az po te co se vas hra zepta co chcete delat dal, napr. pouzit item, ho napiste.");
             System.out.println(commands.get("help").execute());
-            do{
+            do {
                 doCommand();
-            }while(!exit|| p.getCompletedTasks().size() != 17);
-            if(p.getCompletedTasks().size() == 18){
-                System.out.println("GRATULUJI K DOHRANI HRY");
+                if (p.getCompletedTasks().size() == 17) {
+                    System.out.println("GRATULUJI K DOHRANI HRY");
+                    break;
+                }
             }
+                while (!exit) ;
+
+
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

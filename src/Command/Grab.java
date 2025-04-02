@@ -38,7 +38,7 @@ public class Grab implements Command {
 
 
                     it.remove();
-                    if (p.isDidSomething()){
+                    if (p.isDidCompleteTask()){
                         return "ukoly aktualizovany, " + "sebral jsi: " + item.name();
                     }else {
                         return "sebral jsi" + item.name();

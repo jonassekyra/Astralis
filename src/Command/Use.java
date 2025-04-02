@@ -50,7 +50,7 @@ public class Use implements Command {
 
 
                 }
-                if (player.isDidSomething()) {
+                if (player.isDidCompleteTask()) {
                     return "pouzito";
                 } else {
                     return "tento item zde nelze pouzit";
