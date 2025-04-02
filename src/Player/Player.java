@@ -17,7 +17,8 @@ public class Player {
     private ArrayList<Task> completedTasks;
     private ArrayList<Task> accessibleTasks;
     private final Module module;
-    private boolean didSomething;
+    private boolean didCompleteTask;
+    private boolean foundNewTask;
 
     /**
      * adds item to inventory
@@ -106,9 +107,16 @@ public class Player {
     }
 
 
-    public boolean isDidSomething() {
-        return didSomething;
+    public boolean isFoundNewTask() {
+        return foundNewTask;
     }
+
+
+    public boolean isDidCompleteTask() {
+        return didCompleteTask;
+    }
+
+
 
     public ArrayList<Task> getCompletedTasks() {
         return completedTasks;
@@ -186,7 +194,7 @@ public class Player {
      * @return list of completed tasks
      */
     public String checkTaskCompletion(String input, String currentLocation) {
-        didSomething = false;
+        didCompleteTask = false;
         Iterator<Task> completeIterator = accessibleTasks.iterator();
         HashSet<String> tasks = new HashSet<>();
         while (completeIterator.hasNext()) {
@@ -200,7 +208,7 @@ public class Player {
                 completeTask(task);
 
 
-                didSomething = true;
+                didCompleteTask = true;
 
                 if (task.getReward() != null) {
                     items.add(task.getReward());
@@ -210,7 +218,7 @@ public class Player {
 
         }
 
-        if (didSomething) {
+        if (didCompleteTask) {
             return "splnene ukoly: " + tasks;
 
         } else {
@@ -226,7 +234,7 @@ public class Player {
      * @return Array of new tasks.
      */
     public String checkForNewTasks(String input) {
-        didSomething = false;
+        foundNewTask = false;
         Iterator<Task> taksIterator = allTasks.iterator();
         HashSet<String> tasks = new HashSet<>();
         while (taksIterator.hasNext()) {
@@ -235,11 +243,11 @@ public class Player {
                 tasks.add(task.getText());
                 taksIterator.remove();
                 accessibleTasks.add(task);
-                didSomething = true;
+                foundNewTask = true;
             }
         }
 
-        if (didSomething) {
+        if (didCompleteTask) {
             return "nove ukoly: " + accessibleTasks;
         } else {
             return "zadne nove ukoly";
